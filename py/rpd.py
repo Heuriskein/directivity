@@ -1,4 +1,4 @@
-from numpy import arange, pi, transpose, divide, sin, log10, matrix
+from numpy import arange, pi, transpose, divide, sin, log10
 from scipy.special import jv as besselj
 from matplotlib.pyplot import polar, show
 
@@ -7,13 +7,13 @@ dia = int(input('Diameter of driver in mm : '))
 f = int(input('Frequency of interested in Hz : '))
 #f=1000;      # frequency of interest in Hz
 #
-c = 345
+c = 345.0
 rho_a = 1.2;
-phi = arange(-1*pi/2, pi/2 + pi/1800,pi/1800)
-phi = phi[2:1801] # Is this a bug? it's shifted to the right, past the end of the array.
+phi = arange(-1*pi/2, pi/2 + pi/1800, pi/1800)
+phi = phi[1:1800] # Is this a bug? it's shifted to the right, past the end of the array.
 #
 a = dia/1000
-theta = arange(pi/1800, pi, pi/1800)
+theta = arange(pi/1800, pi, pi/1800)	
 k = (2 * pi * f) / c;
 #
 dir = divide(2 * besselj(k * a, sin(theta)), (k * a * sin(theta)))
