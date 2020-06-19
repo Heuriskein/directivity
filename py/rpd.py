@@ -2,10 +2,10 @@ from numpy import arange, pi, transpose, divide, sin, log10, matrix
 from scipy.special import jv as besselj
 from matplotlib.pyplot import polar, show
 
-#dia = int(input('Diameter of driver in mm : '))
-dia=20;     # diameter of piston in mm
-#f = int(input('Frequency of interested in Hz : '))
-f=1000;      # frequency of interest in Hz
+dia = int(input('Diameter of driver in mm : '))
+#dia=20;     # diameter of piston in mm
+f = int(input('Frequency of interested in Hz : '))
+#f=1000;      # frequency of interest in Hz
 #
 c = 345
 rho_a = 1.2;
