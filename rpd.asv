@@ -1,0 +1,38 @@
+format long e
+clear all
+clc
+%
+dia = input('Diameter of driver in mm : ');
+%dia=657/2;     % diameter of piston in mm
+f = input('Frequency of interested in Hz : ');
+%f=500;      % frequency of interest in Hz
+%
+c=345;
+rho_a=1.2;
+phi=-1*pi/2:pi/1800:pi/2;
+phi=phi(2:1801);
+%
+a=dia/1000;
+theta=pi/1800:pi/1800:pi;
+k=(2*pi*f)/c;
+%
+dir=2*besselj(k*a,sin(theta))./(k*a*sin(theta));
+%
+p=dir./max(dir);
+q=20*log10(p);
+%
+p_s=[phi' p'];
+q_s=[phi' q'];
+%save -ascii dir.txt p_s
+%dlmwrite('dir.txt',p_s,'	');
+%dlmwrite('dir_log.txt',q_s,'	');
+%
+
+ma=max(find(-1*(85/90*pi/2) < phi & phi < 85/90*pi/2));
+mn=min(find(-1*(805/90*pi/2) < phi & phi < 85/90*pi/2));
+ma=max(find(-15 < q))-1;
+mn=min(find(-15 < q))+1;
+dirplot(q_s(mn:ma,1)*180/pi,q_s(mn:ma,2),'r-',[0 -30 6]);
+%MMPOLAR(q_s(mn:ma,1),q_s(mn:ma,2),'r-','Style','compass','Rlimit',[0 -40]);
+%END of File
+
