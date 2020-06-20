@@ -1,6 +1,6 @@
 from numpy import arange, pi, transpose, divide, sin, log10
 from scipy.special import jv as besselj
-from matplotlib.pyplot import polar, show
+import matplotlib.pyplot as plt
 
 dia = int(input('Diameter of driver in mm : '))
 #dia=20;     # diameter of piston in mm
@@ -25,8 +25,12 @@ q = 20 * log10(p)
 q_s = (transpose(phi), transpose(q))
 #
 #Dirplot(q_s(:,1)*180/pi,q_s(:,2),'r-',[0 -30 5]);
-polar(q_s[0], q_s[1], 'r-')
+ax = plt.subplot('111', projection='polar')
+ax.plot(q_s[0], q_s[1], 'r-')
+ax.set_rticks([-50, -40, -30, -20, -10, 0])
+ax.set_rmax(0)
+ax.grid(True)
 #
 #END of File
 
-show()
+plt.show()
