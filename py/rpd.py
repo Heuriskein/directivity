@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import sys
 
 if '--test' in sys.argv:
-    dia=20.0	     # diameter of piston in mm
-    f=1000.0      # frequency of interest in Hz
+    dia=33.0	     # diameter of piston in mm
+    f=5000.0      # frequency of interest in Hz
 else:
     dia = float(input('Diameter of driver in mm : '))
     f = float(input('Frequency of interested in Hz : '))
@@ -30,11 +30,14 @@ q_s = (transpose(phi), transpose(q))
 #Dirplot(q_s(:,1)*180/pi,q_s(:,2),'r-',[0 -30 5]);
 ax = plt.subplot('111', projection='polar')
 ax.plot(q_s[0], q_s[1], 'r-')
-ax.set_rticks([-50, -40, -30, -20, -10, 0])
+ax.set_rticks(range(-30, 1, 6))
 ax.set_theta_offset(pi/2.0)
 ax.set_thetalim(thetamin=90, thetamax=-90)
 ax.set_theta_direction(-1)
+ax.set_thetagrids(range(-90, 90, 10),
+	labels=["-90", "", "", "-60", "", "", -30, "", "", 0, "", "", 30, "", "", 60, "", "", 90])
 ax.set_rmax(0)
+ax.set_rmin(-30)
 ax.grid(True)
 #
 #END of File
